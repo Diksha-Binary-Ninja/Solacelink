@@ -17,6 +17,8 @@ const cors = require('cors');  // <-- Import CORS package
 
 app.use(cors());  // <-- Enable CORS for all routes
 
+const serverless = require('serverless-http');
+module.exports.handler = serverless(app);
 
 const io = new Server(server, {
     cors: {
