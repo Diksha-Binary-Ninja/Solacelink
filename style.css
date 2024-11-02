@@ -1,0 +1,391 @@
+/* General styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(120deg, #c3e0e5 0%, #f5c6d4 100%);
+    overflow: hidden;
+    margin: 0;
+}
+
+.background-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url("images/mountain-bg.jpg") no-repeat center center fixed;
+    background-size: cover;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+/* Landing container styling */
+.landing-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    max-width: 800px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Option box styling */
+.options-grid {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin: 20px 0;
+    flex-wrap: wrap; /* Allows the boxes to wrap on smaller screens */
+}
+
+.option-box {
+    flex: 1;
+    max-width: 250px;
+    margin: 10px;
+    padding: 20px;
+    background: linear-gradient(135deg, #78c8e6, #f5b5d4);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    text-align: center;
+}
+
+.option-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Button styling */
+button {
+    padding: 12px 20px;
+    font-size: 1em;
+    border-radius: 8px;
+    border: none;
+    background-color: #ff8ba7;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background-color: #ff6483;
+}
+
+/* Mood tracker styling */
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.landing-container, .chat-container {
+    animation: slideUp 0.6s ease;
+}
+#moodHistoryChart {
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+/* Helpline link styling */
+.helpline-link {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 10px 0;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+.helpline-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Music button styling */
+.music-btn {
+    background: linear-gradient(135deg, #ffe0b5 0%, #ffb5e8 100%);
+    color: #333;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: 20px;
+}
+
+.music-btn:hover {
+    background: linear-gradient(135deg, #ffb5e8 0%, #ffe0b5 100%);
+}
+
+/* Chat container styling */
+.chat-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.message-container {
+    background: #f0f4f7;
+    border-radius: 12px;
+    padding: 20px;
+    width: 100%;
+    max-height: 500px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.dream-thumbnail {
+    width: 150px;
+    cursor: pointer;
+    margin: 10px;
+}
+.stress-issue-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#enlargedImage {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    display: block;
+}
+
+.animate-enlarge {
+    animation: enlargeImage 1s ease-out;
+}
+
+
+
+#messageInp {
+    width: 100%;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 1em;
+}
+/* By default, hide the Send button */
+
+
+button#sendBtn {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button#sendBtn:hover {
+    background-color: #45a049;
+}
+/* By default, hide the Send button */
+/* By default, hide the Send button */
+
+
+
+/* Input area styling */
+.input-area {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Action button styling */
+.action-btn {
+    background: linear-gradient(135deg, #b2f7ef 0%, #f7d6e0 100%);
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 30px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.action-btn:hover {
+    background: linear-gradient(135deg, #f7d6e0, #b2f7ef);
+}
+
+#badDreamsContainer {
+    display: none; /* Initially hidden */
+}
+/* Add smooth transition effects */
+.container-transition {
+    transition: all 0.6s ease-in-out;
+    opacity: 0;
+}
+
+.container-show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Dream container styling */
+.dream-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 900px;
+}
+
+/* Image styling */
+.dream-image-wrapper {
+    width: 100%;
+    max-width: 900px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dream-image-wrapper img {
+    width: 100%; /* Full width for the image */
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Dream input area styling */
+.dream-input-wrapper {
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dream-input-wrapper h3 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 10px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.dream-input {
+    width: 80%;
+    height: 150px;
+    padding: 10px;
+    font-size: 1em;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+    margin-bottom: 20px;
+}
+
+.dream-input:focus {
+    border-color: #0066cc;
+    box-shadow: 0px 0px 12px rgba(0, 102, 204, 0.4);
+}
+
+/* Submit dream button styling */
+.submit-dream-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-dream-btn:hover {
+    background-color: #218838;
+}
+
+/* Reality check buttons styling */
+.reality-check {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.reality-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.reality-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .landing-container, .mental-health-container, .chat-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .option-box, .mood-tracker, .music-btn {
+        width: 100%;
+        width: 90%;
+    }
+
+    .options-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .option-box p, .mood-tracker p {
+        font-size: 1.2em;
+    }
+}
