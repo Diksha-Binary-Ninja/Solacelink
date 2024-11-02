@@ -766,10 +766,7 @@ if (submitSeeingBtn) {
 // Event listener for submitting scenery thoughts
 sendBtn.style.display = 'none';
 
-let debounceTimeout;
-document.getElementById('startBtn').addEventListener('click', () => {
-  clearTimeout(debounceTimeout);
-  debounceTimeout = setTimeout(() => {
+
 // Event listener for the "Start" button
 if (startBtn) {
     startBtn.addEventListener('click', () => {
@@ -823,8 +820,7 @@ if (startBtn) {
         });
     });
 }
-  }, 200); // Adjust delay as needed
-});
+  
 // Event listener for the "Send" button
 if (sendBtn) {
     
