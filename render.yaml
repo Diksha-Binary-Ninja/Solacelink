@@ -1,20 +1,21 @@
 version: 1.0
 
 services:
-  - name: web
-    type: static  # Serves the frontend files
-    env: static
-    staticPublishPath: .  # Ensures index.html and all static files are served from the root directory
+  - name: frontend
+    type: web
+    env: node
     build:
       commands:
         - npm install
+    start:
+      command: serve -s .  # Serve static files (make sure to install `serve` or another static file server)
     routes:
       - type: rewrite
         source: /socket.io  # Forward socket.io requests to the backend
-        destination: http://api:3000/socket.io
+        destination: http://backend:3000/socket.io
 
-  - name: api
-    type: web  # Runs the backend server
+  - name: backend
+    type: web
     env: node
     build:
       commands:
@@ -29,4 +30,4 @@ services:
     routes:
       - type: websocket
         source: /socket.io  # WebSocket route for socket.io
-        destination: http://api:3000/socket.io
+        destination: http://backend:3000/socket.io
