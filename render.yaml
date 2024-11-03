@@ -2,14 +2,12 @@ version: 1.0
 
 components:
   - name: web
-    type: frontend
+    type: static
     path: /
-    entry: index.html
     build:
       commands:
         - npm install
-    start:
-      command: npm run start-frontend
+    staticPublishPath: .  # Ensures index.html and all static files are served from the root directory
     env:
       NODE_ENV: production
     files:
@@ -21,14 +19,14 @@ components:
       - download (3).jpeg
       - download.jpeg
       - perfect-beauty-191271.mp3
-    scripts:
-      - src: "/socket.io/socket.io.js"
+    routes:
+      - type: rewrite
+        source: /socket.io  # Forward socket.io requests to the backend
+        destination: http://backend:3000/socket.io
 
   - name: api
-    type: backend
+    type: web
     path: /api
-    entry: server.js
-    language: node
     build:
       commands:
         - npm install
@@ -37,15 +35,10 @@ components:
     env:
       CORS_ALLOWED_ORIGIN: "*"
       PORT: 3000
-    dependencies:
-      - express
-      - socket.io
-      - cors
-
-services:
-  - name: websocket-service
-    type: websocket
-    path: /ws
-    entry: server.js
-    port: 3000
-    description: Handles real-time messaging and user connection through WebSocket.
+    routes:
+      - type: websocket
+        source: /socket.io  # WebSocket path for socket.io
+        destination: http://backend:3000/socket.io
+    envVars:
+      - key: PORT
+        value: 3000
