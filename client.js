@@ -2,7 +2,7 @@
 // <script src="/socket.io/socket.io.js"></script>
 
 // Establish socket connection
-const socket = io('https://solacelink.vercel.app/');
+const socket = io('https://solacelink.onrender.com');
 
 
 // DOM Elements
