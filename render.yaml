@@ -1,0 +1,21 @@
+services:
+  - name: solacelink
+    type: web
+    env: node
+    plan: free
+    buildCommand: "npm install"
+    startCommand: "node server.js"
+    envVars:
+      - key: NODE_ENV
+        value: production
+    healthCheckPath: "/"
+    autoDeploy: true
+    regions: 
+      - oregon
+
+  - name: my-redis
+    type: redis
+    plan: free
+    envVars:
+      - key: REDIS_PASSWORD
+        generateValue: true
