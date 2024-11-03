@@ -1,21 +1,51 @@
-services:
-  - name: solacelink
-    type: web
-    env: node
-    plan: free
-    buildCommand: "npm install"
-    startCommand: "node server.js"
-    envVars:
-      - key: NODE_ENV
-        value: production
-    healthCheckPath: "/"
-    autoDeploy: true
-    regions: 
-      - oregon
+version: 1.0
 
-  - name: my-redis
-    type: redis
-    plan: free
-    envVars:
-      - key: REDIS_PASSWORD
-        generateValue: true
+components:
+  - name: web
+    type: frontend
+    path: /
+    entry: index.html
+    build:
+      commands:
+        - npm install
+    start:
+      command: npm run start-frontend
+    env:
+      NODE_ENV: production
+    files:
+      - client.js
+      - style.css
+      - index.html
+      - download (1).jpeg
+      - download (2).jpeg
+      - download (3).jpeg
+      - download.jpeg
+      - perfect-beauty-191271.mp3
+    scripts:
+      - src: "/socket.io/socket.io.js"
+
+  - name: api
+    type: backend
+    path: /api
+    entry: server.js
+    language: node
+    build:
+      commands:
+        - npm install
+    start:
+      command: node server.js
+    env:
+      CORS_ALLOWED_ORIGIN: "*"
+      PORT: 3000
+    dependencies:
+      - express
+      - socket.io
+      - cors
+
+services:
+  - name: websocket-service
+    type: websocket
+    path: /ws
+    entry: server.js
+    port: 3000
+    description: Handles real-time messaging and user connection through WebSocket.
