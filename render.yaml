@@ -1,44 +1,32 @@
 version: 1.0
 
-components:
+services:
   - name: web
-    type: static
-    path: /
+    type: static  # Serves the frontend files
+    env: static
+    staticPublishPath: .  # Ensures index.html and all static files are served from the root directory
     build:
       commands:
         - npm install
-    staticPublishPath: .  # Ensures index.html and all static files are served from the root directory
-    env:
-      NODE_ENV: production
-    files:
-      - client.js
-      - style.css
-      - index.html
-      - download (1).jpeg
-      - download (2).jpeg
-      - download (3).jpeg
-      - download.jpeg
-      - perfect-beauty-191271.mp3
     routes:
       - type: rewrite
         source: /socket.io  # Forward socket.io requests to the backend
-        destination: http://backend:3000/socket.io
+        destination: http://api:3000/socket.io
 
   - name: api
-    type: web
-    path: /api
+    type: web  # Runs the backend server
+    env: node
     build:
       commands:
         - npm install
     start:
       command: node server.js
-    env:
-      CORS_ALLOWED_ORIGIN: "*"
-      PORT: 3000
-    routes:
-      - type: websocket
-        source: /socket.io  # WebSocket path for socket.io
-        destination: http://backend:3000/socket.io
     envVars:
+      - key: CORS_ALLOWED_ORIGIN
+        value: "*"
       - key: PORT
         value: 3000
+    routes:
+      - type: websocket
+        source: /socket.io  # WebSocket route for socket.io
+        destination: http://api:3000/socket.io
