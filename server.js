@@ -21,7 +21,7 @@ app.use(cors());  // <-- Enable CORS for all routes
 
 const io = new Server(server, {
     cors: {
-        origin: "https://solacelink.vercel.app/",  // <-- Allow requests from any origin
+        origin: "*",  // <-- Allow requests from any origin
         methods: ["GET", "POST"]
     }
 });
