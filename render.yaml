@@ -4,24 +4,18 @@ services:
   - name: frontend
     type: web
     env: node
-    build:
-      commands:
-        - npm install
-    start:
-      command: serve -s .  # Serve static files (make sure to install `serve` or another static file server)
+    envVars:
+      - key: NODE_ENV
+        value: production
+    staticPublishPath: .  # Ensures all static files (index.html, etc.) are served from the root directory
     routes:
       - type: rewrite
-        source: /socket.io  # Forward socket.io requests to the backend
-        destination: http://backend:3000/socket.io
+        source: /socket.io  # Rewrite path for Socket.io client script
+        destination: http://backend:3000/socket.io  # Forward requests to backend
 
   - name: backend
     type: web
     env: node
-    build:
-      commands:
-        - npm install
-    start:
-      command: node server.js
     envVars:
       - key: CORS_ALLOWED_ORIGIN
         value: "*"
@@ -29,5 +23,5 @@ services:
         value: 3000
     routes:
       - type: websocket
-        source: /socket.io  # WebSocket route for socket.io
+        source: /socket.io
         destination: http://backend:3000/socket.io
